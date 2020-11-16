@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Temperature checker</title>
+        <style>
+            .mainCont{
+                background-color: aqua;
+            }
+            .headText{
+                text-align: center;
+                font-size: 30px;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            .btnReload{
+                background-color: burlywood;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mainCont">
+            <div class="headText"></div>
+            <div id="temperature"></div>
+            <div> <a class="btnReload" onclick="reloadT()">Reload</a> </div>
+        </div>
+    </body>
+    <script>
+        function reloadT(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("temperature").innerHTML = this.responseText + "C";
+                }
+            };
+            xhttp.open("GET", "/temperature", true);
+            xhttp.send();
+        }
+    </script>
+</html>
